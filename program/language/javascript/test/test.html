@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html>
+<head>
 
+</head>
 <body>
 
     <h2>JavaScript 能做什么</h2>
 
+<!-- 
+
     <p id="demo">JavaScript 能够改变 HTML 内容。</p>
 
-    <!-- 
+
 document.write("<h1>这是一个标题</h1>");
 document.write("<p>这是一个段落。</p>");
 
@@ -71,11 +75,40 @@ function myFunction()
 <script>
 alert("我的第一个 JavaScript");
 </script>
--->
+
 
 <script>
 document.write("<h1>这是一个标题</h1>");
 document.write("<p>这是一个段落。</p>");
+</script>
+
+
+
+
+<p id="demo">一个段落。</p>
+<button type="button" onclick="myFunction()">点击这里</button>
+
+<button type="button" onclick="myFunction1()">点击这里</button>
+<script>
+function myFunction1(){
+	document.getElementById("demo").innerHTML="我的第一个 JavaScript 函数";
+}
+</script>
+
+
+-->
+<p id="demo">一个段落。</p>
+<button type="button" onclick="myFunction()">点击这里</button>
+<p><b>注释：</b>myFunction 保存在名为 "myScript.js" 的外部文件中。</p>
+<script src="./myScript.js"></script>
+
+
+<script>
+        window.alert(5 + 6);
+</script>
+
+<script>
+        document.getElementById("demo").innerHTML = "段落已修改。";
 </script>
 
 </body>
