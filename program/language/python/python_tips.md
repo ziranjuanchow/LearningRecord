@@ -216,3 +216,16 @@ os.system(cmd)
 os.popen(command[, mode[, bufsize]])
 subprocess.Popen()
 ```
+
+
+#### 9.for in 前有参数情况
+eg:
+```python
+ls2 = [str(i) for i in ls1]
+```
+等价于：
+```python
+ls2 = list()
+for i in ls1:
+    ls2.append(str(i))
+```
