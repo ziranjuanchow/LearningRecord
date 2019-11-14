@@ -229,3 +229,5 @@ ls2 = list()
 for i in ls1:
     ls2.append(str(i))
 ```
+
+#### 10.
