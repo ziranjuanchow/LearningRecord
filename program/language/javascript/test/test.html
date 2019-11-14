@@ -96,7 +96,7 @@ function myFunction1(){
 </script>
 
 
--->
+
 <p id="demo">一个段落。</p>
 <button type="button" onclick="myFunction()">点击这里</button>
 <p><b>注释：</b>myFunction 保存在名为 "myScript.js" 的外部文件中。</p>
@@ -112,6 +112,36 @@ function myFunction1(){
 
 <script>
         document.getElementById("demo").innerHTML = "段落已修改。";
+</script>
+
+
+<script>
+function myFunction()
+{
+    alert("Hello World!");
+}
+</script>
+<button onclick="myFunction()">点我</button>
+
+
+<p>点击这个按钮，来调用带参数的函数。</p>
+<button onclick="myFunction('Harry Potter','Wizard')">点击这里</button>
+<script>
+function myFunction(name,job){
+    alert("Welcome " + name + ", the " + job);
+}
+</script>
+-->
+
+
+<p id="demo">555</p>
+<script>
+function myFunction(a,b)
+{
+    return a*b;
+}
+ 
+document.getElementById("demo").innerHTML=myFunction(4,3);
 </script>
 
 </body>

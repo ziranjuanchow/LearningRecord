@@ -549,3 +549,225 @@ var person= new Object;
 ><font color=red >JavaScript 对象是变量的容器。</font>
 
 ### 对象定义
+>你可以使用字符来定义和创建 JavaScript 对象:
+```js
+var person = {firstName:"John", lastName:"Doe", age:50, eyeColor:"blue"};
+```
+>定义 JavaScript 对象可以跨越多行，空格跟换行不是必须的：
+```js
+var person = {
+    firstName:"John",
+    lastName:"Doe",
+    age:50,
+    eyeColor:"blue"
+};
+```
+
+### 对象属性
+><font color=red >可以说 "JavaScript 对象是变量的容器"。</font>\
+>但是，我们通常认为 "JavaScript 对象是键值对的容器"。\
+>键值对通常写法为 name : value (键与值以冒号分割)。\
+>键值对在 JavaScript 对象通常称为 对象属性。\
+><font color=red >JavaScript 对象是属性变量的容器。</font>
+>* 对象键值对的写法类似于：
+>* PHP 中的关联数组
+>* Python 中的字典
+>* C 语言中的哈希表
+>* Java 中的哈希映射
+>* Ruby 和 Perl 中的哈希表
+
+### 访问对象属性
+>你可以通过两种方式访问对象属性:
+```js
+person.lastName;
+person["lastName"];
+```
+
+### 对象方法
+>对象的方法定义了一个函数，并作为对象的属性存储。\
+>对象方法通过添加 () 调用 (作为一个函数)。\
+>该实例访问了 person 对象的 fullName() 方法:
+```js
+name = person.fullName();
+```
+如果你要访问 person 对象的 fullName 属性，它将作为一个定义函数的字符串返回：
+```js
+name = person.fullName;
+```
+><font color=red >JavaScript 对象是属性和方法的容器。</font>
+
+### 访问对象方法
+
+```js
+//可以使用以下语法创建对象方法：
+methodName : function() { code lines }
+//可以使用以下语法访问对象方法：
+objectName.methodName()
+```
+>通常 fullName() 是作为 person 对象的一个方法， fullName 是作为一个属性。\
+>有多种方式可以创建，使用和修改 JavaScript 对象。\
+>同样也有多种方式用来创建，使用和修改属性和方法。
+
+## JavaScript 函数
+>函数是由事件驱动的或者当它被调用时执行的可重复使用的代码块。
+```js
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>测试实例</title>
+<script>
+function myFunction()
+{
+    alert("Hello World!");
+}
+</script>
+</head>
+ 
+<body>
+<button onclick="myFunction()">点我</button>
+</body>
+</html>
+```
+
+### JavaScript 函数语法
+>函数就是包裹在花括号中的代码块，前面使用了关键词 function：
+```js
+function functionname()
+{
+    // 执行代码
+}
+```
+>当调用该函数时，会执行函数内的代码。\
+>可以在某事件发生时直接调用函数（比如当用户点击按钮时），并且可由 JavaScript 在任何位置进行调用。\
+><font color=red >JavaScript 对大小写敏感。关键词 function 必须是小写的，并且必须以与函数名称相同的大小写来调用函数。</font>
+
+### 调用带参数的函数
+>在调用函数时，您可以向其传递值，这些值被称为参数。\
+>这些参数可以在函数中使用。\
+>您可以发送任意多的参数，由逗号 (,) 分隔：
+```js
+myFunction(argument1,argument2)
+```
+>当您声明函数时，请把参数作为变量来声明：
+```js
+function myFunction(var1,var2)
+{
+代码
+}
+```
+>变量和参数必须以一致的顺序出现。第一个变量就是第一个被传递的参数的给定的值，以此类推。
+```js
+<p>点击这个按钮，来调用带参数的函数。</p>
+<button onclick="myFunction('Harry Potter','Wizard')">点击这里</button>
+<script>
+function myFunction(name,job){
+    alert("Welcome " + name + ", the " + job);
+}
+</script>
+```
+
+### 带有返回值的函数
+#### 语法
+```js
+function myFunction()
+{
+    var x=5;
+    return x;
+}
+```
+
+```js
+document.getElementById("demo").innerHTML=myFunction();
+```
+
+### 全局 JavaScript 变量
+>在函数外声明的变量是全局变量，网页上的所有脚本和函数都能访问它。
+
+### JavaScript 变量的生存期
+>JavaScript 变量的生命期从它们被声明的时间开始。\
+>局部变量会在函数运行以后被删除。\
+>全局变量会在页面关闭后被删除。
+
+### 向未声明的 JavaScript 变量分配值
+>如果您把值赋给尚未声明的变量，该变量将被自动作为 window 的一个属性。\
+>这条语句：
+```js
+carname="Volvo";
+```
+>将声明 window 的一个属性 carname。\
+>非严格模式下给未声明变量赋值创建的全局变量，是全局对象的可配置属性，可以删除。
+```js
+var var1 = 1; // 不可配置全局属性
+var2 = 2; // 没有使用 var 声明，可配置全局属性
+
+console.log(this.var1); // 1
+console.log(window.var1); // 1
+
+delete var1; // false 无法删除
+console.log(var1); //1
+
+delete var2; 
+console.log(delete var2); // true
+console.log(var2); // 已经删除 报错变量未定义
+```
+
+## JavaScript 作用域
+### JavaScript 作用域
+>在 JavaScript 中, 对象和函数同样也是变量。\
+>在 JavaScript 中, 作用域为可访问变量，对象，函数的集合。\
+>JavaScript 函数作用域: 作用域在函数内修改。
+
+### JavaScript 局部作用域
+>变量在函数内声明，变量为局部作用域。\
+>局部变量：只能在函数内部访问。
+```js
+// 此处不能调用 carName 变量
+function myFunction() {
+    var carName = "Volvo";
+    // 函数内可调用 carName 变量
+}
+```
+>因为局部变量只作用于函数内，所以不同的函数可以使用相同名称的变量。\
+>局部变量在函数开始执行时创建，函数执行完后局部变量会自动销毁。
+
+### JavaScript 全局变量
+>变量在函数外定义，即为全局变量。\
+>全局变量有 全局作用域: 网页中所有脚本和函数均可使用。 
+```js
+var carName = " Volvo";
+ 
+// 此处可调用 carName 变量
+function myFunction() {
+    // 函数内可调用 carName 变量
+}
+```
+>如果变量在函数内没有声明（没有使用 var 关键字），该变量为全局变量。\
+>以下实例中 carName 在函数内，但是为全局变量。
+```js
+// 此处可调用 carName 变量
+ 
+function myFunction() {
+    carName = "Volvo";
+    // 此处可调用 carName 变量
+}
+```
+### JavaScript 变量生命周期
+>JavaScript 变量生命周期在它声明时初始化。\
+>局部变量在函数执行完毕后销毁。\
+>全局变量在页面关闭后销毁。
+
+### 函数参数
+>函数参数只在函数内起作用，是局部变量。
+
+### HTML 中的全局变量
+在 HTML 中, 全局变量是 window 对象: 所有数据变量都属于 window 对象。
+```js
+//此处可使用 window.carName
+ 
+function myFunction() {
+    carName = "Volvo";
+}
+```
+><font color=red>你的全局变量，或者函数，可以覆盖 window 对象的变量或者函数。\
+>局部变量，包括 window 对象可以覆盖全局变量和函数</font>。
