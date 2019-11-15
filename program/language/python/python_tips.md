@@ -1,4 +1,4 @@
-#### 1.py to pyd
+## 1. py to pyd
 a.安装cython
 ````
 pip install Cython --install-option="--no-cython-compile"
@@ -47,7 +47,7 @@ def find_vcvarsall(version):
     vsbase = VS_BASE % version
 ````
 
-#### 2.self / cls
+## 2. self / cls
 ````
 Function and method arguments:
 Always use self for the first argument to instance methods.
@@ -57,7 +57,7 @@ Always use cls for the first argument to class methods.
 >&nbsp;&nbsp;cls表示这个类本身。<br>
 >&nbsp;&nbsp;类先调用__new__方法，返回该类的实例对象，这个实例对象就是__init__方法的第一个参数self，即self是__new__的返回值。<br>
 
->##### 特殊成员和魔法方法<br>
+>#### 特殊成员和魔法方法<br>
 >http://www.liujiangblog.com/course/python/47<br>
 >&nbsp;&nbsp;&nbsp;&nbsp;Python中有大量类似__doc__这种以双下划线开头和结尾的特殊成员及“魔法方法”，它们有着非常重要的地位和作用，也是Python语言独具特色的语法之一！<br>
 >比如：
@@ -173,11 +173,11 @@ AttributeError: 'Foo' object has no attribute 'sex'
 ````
 >需要提醒的是，__slots__定义的属性仅对当前类的实例起作用，对继承了它的子类是不起作用的。想想也是这个道理，如果你继承一个父类，却莫名其妙发现有些变量无法定义，那不是大问题么？如果非要子类也被限制，除非在子类中也定义__slots__，这样，子类实例允许定义的属性就是自身的__slots__加上父类的__slots__。
 
-#### 3.reflect反射
+## 3. reflect反射
 >在前面的章节，我们遗留了hasattr()、getattr()、setattr()和delattr()的相关内容，它们在这里。<br>
 对编程语言比较熟悉的同学，应该听说过“反射”这个机制。Python作为一门动态语言，当然不会缺少这一重要功能。下面结合一个web路由的实例来阐述Python反射机制的使用场景和核心本质。
 
-#### 4.判断平台
+## 4. 判断平台
 `````
 import platform
  
@@ -194,7 +194,7 @@ if __name__ == "__main__":
     print(platform.system())
 `````
 
-#### 5.time and string
+## 5. time and string
 string to time
 `````
 datetime.strptime(date_string, format)
@@ -204,13 +204,13 @@ time to string
 time.strptime(time_string[, format])
 `````
 
-#### 6.pickle、cPickle包
+## 6. pickle、cPickle包
 
 
-#### 7.计算
+## 7. 计算
 pyhton2上是向下取整，python3是正确的了。比如-53/10，py2结果是-6，c/cpp是-5。这点是刷LeetCode的时候发现的，之前没注意~
 
-#### 8.执行命令行
+## 8. 执行命令行
 ```
 os.system(cmd)
 os.popen(command[, mode[, bufsize]])
@@ -218,7 +218,7 @@ subprocess.Popen()
 ```
 
 
-#### 9.for in 前有参数情况
+## 9. for in 前有参数情况
 eg:
 ```python
 ls2 = [str(i) for i in ls1]
@@ -230,4 +230,184 @@ for i in ls1:
     ls2.append(str(i))
 ```
 
-#### 10.
+## 10. 调用REST API的集中方式
+- urllib2
+- httplib2
+- pycurl
+- requests
+  
+### 1. urllib2
+>Sample1
+>```python
+>import urllib2, urllib
+>github_url = 'https://api.github.com/user/repos'
+>password_manager = urllib2.HTTPPasswordMgrWithDefaultRealm()
+>password_manager.add_password(None, github_url, 'user', '***')
+>auth = urllib2.HTTPBasicAuthHandler(password_manager) # create an >authentication handler
+>opener = urllib2.build_opener(auth) # create an opener with the >authentication handler
+>urllib2.install_opener(opener) # install the opener... 
+>request = urllib2.Request(github_url, urllib.urlencode({'name':'Test >repo', 'description': 'Some test repository'})) # Manual encoding required
+>handler = urllib2.urlopen(request)
+>print handler.read()
+>```
+
+>Sample2
+>```python
+>import urllib2
+>url = 'http://ems.vip.ebay.com/removeSIforcloud.cgi?ip=' + ip
+>req = urllib2.Request(url)
+>req.add_header('IAF',abc.token_authiaas)
+>try:
+>    resp = urllib2.urlopen(req)
+>except urllib2.HTTPError, error:
+>    print "Cannot remove service instance!", error
+>    sys.exit(1)
+>response = resp.read()
+>print response
+>```
+
+>Sample3
+>```python
+>import urllib2, urllib, base64
+>url = "https://reparo.stratus.ebay.com/reparo/bootstrap/registerasset/" + >rackid + "/" + asset
+>data = urllib.urlencode({
+>                'reservedResource':'RR-Hadoop',
+>                'resourceCapability':'Production',
+>                'movetoironic':'False',
+>                'output':'json'
+>        })
+>print "Bootstrap Asset jobs starting .............."
+>base64string = base64.encodestring('%s:%s' % (user, passwd)).replace('\n', '')
+>request = urllib2.Request(url, data, headers={"Authorization" : "Basic %s" % >base64string})
+>response = urllib2.urlopen(request).read()
+>response_json = json.loads(response)
+>response_status = response_json['status']
+>status_code = response_status['statusCode']
+>status = response_status['status']
+>message = response_status['message']
+>print status_code , status, message
+>```
+
+### 2. httplib2
+>```python
+>import urllib, httplib2
+>github_url = ''
+>h = httplib2.Http(".cache")
+>h.add_credentials("user", "******", ""
+>data = urllib.urlencode({"name":"test"})
+>resp, content = h.request(github_url, "POST", data)
+>print content
+>```
+
+### 3. pycurl
+>```python
+>import pycurl, json
+>github_url = ""
+>user_pwd = "user:*****"
+>data = json.dumps({"name": "test_repo", "description": "Some test repo"})
+>c = pycurl.Curl()
+>c.setopt(pycurl.URL, github_url)
+>c.setopt(pycurl.USERPWD, user_pwd)
+>c.setopt(pycurl.POST, 1)
+>c.setopt(pycurl.POSTFIELDS, data)
+>c.perform()
+>```
+
+### 4. requests
+>```python
+>import requests, json
+>github_url = ""
+>data = json.dumps({'name':'test', 'description':'some test repo'}) 
+>r = requests.post(github_url, data, auth=('user', '*****'))
+>print r.json
+>```
+
+
+## 11. jira
+
+### 1. install
+>https://github.com/pycontribs/jira/commits/master
+
+### 2. import 
+```python
+from jira import JIRA
+```
+
+### 3. 与jira服务器建立连接
+```python
+jira = JIRA('http://localhost/jira/',basic_auth=('username', 'password'))
+```
+
+### 4. 创建issue 1
+```python
+issue_dict= {
+    'project': {'id': 11107},
+    'summary': 'issue概要',
+    'description': 'issue描述\n第二行',
+    'issuetype': {'name': 'Bug'},
+    'timetracking': {
+        'originalEstimate': '1h',
+        'remainingEstimate': '1h',              
+    },
+    'components':[{'name': '一个模块'}],
+    'priority': {'name': 'Major'},
+    'assignee':{'name': 'username'},
+    'versions':[{'name':'V1.0'}],
+}
+
+new_issue = jira.create_issue(fields=issue_dict)
+```
+
+### 5. 创建issue 2
+```python
+new_issue = jira.create_issue(project='PROJ_key_or_id', summary='New issue from jira-python',
+description='Look into this one', issuetype={'name': 'Bug'})
+```
+
+### 6. 修改issue
+```python
+issue = jira.issue('JIRA-1')
+issue.update(versions=[{"name":'V1.1'}])
+issue.update(labels=['Label A','Label B'])
+issue.update(components=[{'name': 'Xcomponent'}])
+issue.update(summary='new summary', description='A new summary was added')
+issue.update(assignee={'name': 'new_user'}) 
+
+issue_dict= {
+    'summary': 'issue概要',
+    'description': 'issue描述\n第二行',
+}
+issue.update(fields=issue_dict)
+```
+
+### 7. 获取特定issue
+```python
+issue = jira.issue('JIRA-1')
+issue = jira.issue('JRA-1330', fields='summary,description，comment')
+
+summary = issue.fields.summary
+description = issue.fields.description
+```
+
+### 8. 查询issues
+```python
+#使用JQL进行查询
+issues = jira.search_issues('project=PROJ')
+
+#检索第一个标题中含有‘问题’的issue的所有comment
+issues = jira.search_issues(jql_str='project = a_project AND summary ~"问题"', maxResults=1,fields='comment')
+
+#查看comment作者
+issues[0].fields.comment.comments[0].author.displayName
+```
+
+### 9. collections模块
+>这个模块实现了特定目标的容器，以提供Python标准内建容器 dict、list、set、tuple 的替代选择。
+* Counter：字典的子类，提供了可哈希对象的计数功能
+* defaultdict：字典的子类，提供了一个工厂函数，为字典查询提供了默认值
+* OrderedDict：字典的子类，保留了他们被添加的顺序
+* namedtuple：创建命名元组子类的工厂函数
+* deque：类似列表容器，实现了在两端快速添加(append)和弹出(pop)
+* ChainMap：类似字典的容器类，将多个映射集合到一个视图里面
+
+#### Counter
