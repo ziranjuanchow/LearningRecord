@@ -131,7 +131,6 @@ function myFunction(name,job){
     alert("Welcome " + name + ", the " + job);
 }
 </script>
--->
 
 
 <p id="demo">555</p>
@@ -143,6 +142,24 @@ function myFunction(a,b)
  
 document.getElementById("demo").innerHTML=myFunction(4,3);
 </script>
+
+
+<p id="demo">Time:</p>
+<button onclick="getElementById('demo').innerHTML=Date()">现在的时间是?</button>
+
+
+<button onclick="this.innerHTML=Date()">现在的时间是?</button>
+-->
+
+
+<p>点击按钮执行 <em>displayDate()</em> 函数.</p>
+<button onclick="displayDate()">点这里</button>
+<script>
+function displayDate(){
+	document.getElementById("demo").innerHTML=Date();
+}
+</script>
+<p id="demo"></p>
 
 </body>
 
